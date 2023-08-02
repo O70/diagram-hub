@@ -1,9 +1,30 @@
-<mxfile host="app.diagrams.net" modified="2023-08-02T03:20:18.846Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15" version="21.6.6" etag="iJ9m3YOwUHXhdQ4xgaqR" type="github">
+<mxfile host="app.diagrams.net" modified="2023-08-02T10:32:52.318Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Safari/605.1.15" etag="vEDmjckPKLKeUqRI35CB" version="21.6.6" type="github">
   <diagram name="Page-1" id="RexE0t5KJpk72uqxKkzB">
-    <mxGraphModel>
+    <mxGraphModel dx="1194" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-3" value="PC / Mobile / System" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="90" width="670" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-22" value="PaaS:人员数据中台" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="490" width="280" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-23" value="PaaS业务服务层：待办，考勤，请假等" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="320" width="670" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-24" value="PaaS:统一研发平台" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="495" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-25" value="Third: LowCode, BPM, BI,SMS/IM" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="600" width="670" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-26" value="IaaS" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="700" width="670" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ITDcqpuh0zd9whu8jUeQ-27" value="View：集成UI，原生，LowCode，BI" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="210" width="670" height="70" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
