@@ -28,8 +28,8 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install
         run: |
-          node -v 
-          npm -v
+          node -v ; npm -v
+          npm install -g @mermaid-js/mermaid-cli
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
