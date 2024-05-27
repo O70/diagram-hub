@@ -34,6 +34,13 @@ jobs:
           npm install -g @mermaid-js/mermaid-cli
       - name: Build
         run: |
+          sudo apt-get update
+          sudo apt-get install -y locales
+          sudo locale-gen zh_CN.UTF-8
+          export LANG=zh_CN.UTF-8
+          export LC_ALL=zh_CN.UTF-8
+          echo "LANG=zh_CN.UTF-8" >> /etc/environment
+          echo "LC_ALL=zh_CN.UTF-8" >> /etc/environment
           mmdc -i input.mmd -o output.png
           mkdir docs
           mv output.png index.html docs
