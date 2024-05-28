@@ -36,7 +36,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install fonts-noto-cjk-extra
-          mmdc -i input.mmd -o output.png
+          mmdc -i input.mmd -o output.png -t dark -b transparent
           mkdir _site
           mv output.png index.html _site
       - name: Upload artifact
