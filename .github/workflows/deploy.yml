@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on:  apline-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -44,15 +44,16 @@ jobs:
           mmdc -i input.mmd -o output.png
           mkdir docs
           mv output.png index.html docs
+          sudo apt install fonts-noto-cjk-extra?
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
+        # with:
+        #   path: docs
           
   deploy:
     environment:
       name: github-pages
-    runs-on: ubuntu-latest
+    runs-on:  apline-latest
     needs: build
     steps:
       - name: Deploy to GitHub Pages
