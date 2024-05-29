@@ -1,0 +1,14 @@
+{
+  "name": "diagram-hub",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "keywords": [
+    "mermaid"
+  ],
+  "author": "鬼王",
+  "license": "ISC"
+}

@@ -30,19 +30,19 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
       - name: Install
         run: |
+          sudo apt-get update
+          sudo apt install fonts-noto-cjk-extra
           node -v ; npm -v
           npm install -g @mermaid-js/mermaid-cli
       - name: Build
-        run: |
-          sudo apt-get update
-          sudo apt install fonts-noto-cjk-extra
-          mmdc -i input.mmd -o output.png -t dark -b transparent
-          mkdir _site
-          mv output.png index.html _site
+        run: npm start
+      # - name: Build
+      #   run: |
+      #     mmdc -i input.mmd -o output.png -t dark -b transparent
+      #     mkdir _site
+      #     mv output.png index.html _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        # with:
-        #   path: docs
           
   deploy:
     environment:
