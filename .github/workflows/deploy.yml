@@ -33,9 +33,10 @@ jobs:
           sudo apt-get update
           sudo apt install fonts-noto-cjk-extra
           node -v ; npm -v
-          npm install -g @mermaid-js/mermaid-cli
       - name: Build
-        run: npm start
+        run: |
+          npm i @mermaid-js/mermaid-cli
+          cat package.json
       # - name: Build
       #   run: |
       #     mmdc -i input.mmd -o output.png -t dark -b transparent
