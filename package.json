@@ -10,5 +10,8 @@
     "mermaid"
   ],
   "author": "鬼王",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "^10.9.1"
+  }
 }

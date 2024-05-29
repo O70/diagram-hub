@@ -28,15 +28,15 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: Install
+      - name: Install fonts
         run: |
           sudo apt-get update
           sudo apt install fonts-noto-cjk-extra
           node -v ; npm -v
       - name: Build
         run: |
-          npm i @mermaid-js/mermaid-cli
-          cat package.json
+          npm i
+          npm start
       # - name: Build
       #   run: |
       #     mmdc -i input.mmd -o output.png -t dark -b transparent
