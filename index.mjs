@@ -31,8 +31,12 @@ async function processFile(filePath) {
                 // await fs.promises.writeFile(destinationFilePath, processedContent);
                 console.log(filePath);
                 console.log(destinationFilePath, destinationFilePath.replace(destFileExtension, '.png'));
-                const a = await run(filePath, destinationFilePath.replace(destFileExtension, '.png'));
-                console.log(a);
+                await run(filePath, destinationFilePath.replace(destFileExtension, '.png'), {
+                    parseMMDOptions: {
+                        theme: 'dark',
+                        backgroundColor: '#202020'
+                    }
+                });
                 console.log("-------------------------------");
             }
         }
