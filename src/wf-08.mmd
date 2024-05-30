@@ -1,0 +1,13 @@
+flowchart LR
+	classDef sc fill:#080
+	classDef ec fill:#f00
+	node-2 -. 重新提交 .-> node-4
+	node-start((( ))):::sc
+	--> node-1(填报人)
+	==> node-2(岗位1)
+	==> node-3(岗位2\n自动跳过)
+	==> node-4(岗位3)
+	==> node-5(岗位4)
+	--> node-end((( ))):::ec
+	node-4 -. 退回 .-> node-2
+	

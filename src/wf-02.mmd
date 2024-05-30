@@ -1,0 +1,12 @@
+flowchart LR
+	classDef sc fill:#080
+	classDef ec fill:#f00
+	node-1 -. 指定 .-> node-3
+	node-start((( ))):::sc
+	--> node-1(填报人)
+	==> node-2(岗位1)
+	==> node-3(岗位2)
+	==> node-4(岗位3)
+	--> node-end((( ))):::ec
+	node-1 -. 指定 .-> node-4
+	node-2 -. 指定 .-> node-4

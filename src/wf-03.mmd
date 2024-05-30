@@ -1,0 +1,10 @@
+flowchart LR
+    classDef sc fill:#080
+    classDef ec fill:#f00
+    node-start((( ))):::sc
+    --> node-1(填报人)
+    ==> node-2(岗位1\n张三 / 李四)
+    ==> node-3(岗位2\n张三 / 王五)
+    ==> node-4(岗位3)
+    --> node-end((( ))):::ec
+    node-2 -. 张三审批通过 .-> node-4
