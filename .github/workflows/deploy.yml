@@ -32,11 +32,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install fonts-noto-cjk-extra
-          node -v ; npm -v
       - name: Build
         run: |
           npm i
           npm start
+          ls -lh dist
+          du -sh dist
       # - name: Build
       #   run: |
       #     mmdc -i input.mmd -o output.png -t dark -b transparent
