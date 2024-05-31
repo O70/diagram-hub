@@ -29,15 +29,16 @@ async function processFile(filePath) {
                 // const processedContent = await processFile(filePath);
                 const destinationFilePath = path.join(destinationDir, filename);
                 // await fs.promises.writeFile(destinationFilePath, processedContent);
-                console.log(filePath);
-                console.log(destinationFilePath, destinationFilePath.replace(destFileExtension, '.png'));
-                await run(filePath, destinationFilePath.replace(destFileExtension, '.png'), {
+                const destFilePath = destinationFilePath.replace(destFileExtension, '.png');
+                console.log(filePath, "==>", destFilePath);
+                await run(filePath, destFilePath, {
                     theme: 'dark',
                     parseMMDOptions: {
+                        theme: 'dark',
                         backgroundColor: '#202020'
                     }
                 });
-                console.log("-------------------------------");
+                console.log("-".repeat(70));
             }
         }
     } catch (error) {
