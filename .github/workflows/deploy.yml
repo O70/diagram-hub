@@ -32,17 +32,12 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt install fonts-noto-cjk-extra
-      - name: Build
+      - name: npm install && start
         run: |
-          npm i
+          npm install
           npm start
           ls -lh dist
           du -sh dist
-      # - name: Build
-      #   run: |
-      #     mmdc -i input.mmd -o output.png -t dark -b transparent
-      #     mkdir _site
-      #     mv output.png index.html _site
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

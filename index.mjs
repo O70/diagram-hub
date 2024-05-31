@@ -4,42 +4,34 @@ import { run } from "@mermaid-js/mermaid-cli";
 
 const sourceDir = 'src';
 const destinationDir = 'dist';
-const destFileExtension = '.mmd';
-
-async function processFile(filePath) {
-    const fileContent = await fs.promises.readFile(filePath, 'utf8');
-    const processedContent = 'after'/* Perform file processing here */;
-    // console.log(fileContent)
-    return processedContent;
-}
+const srcFileExtension = '.mmd';
+const destFileExtension = '.png';
+const options = {
+    parseMMDOptions: {
+        mermaidConfig: {
+            theme: 'dark'
+        },
+        backgroundColor: '#202020'
+    }
+};
 
 (async () => {
     try {
-        if (!await fs.existsSync(destinationDir)) {
-            await fs.mkdirSync(destinationDir);
+        if (!fs.existsSync(destinationDir)) {
+            fs.mkdirSync(destinationDir);
         }
 
         const files = await fs.promises.readdir(sourceDir);
-
         for (const filename of files) {
             const filePath = path.join(sourceDir, filename);
             const fileExtension = path.extname(filename);
 
-            if (fileExtension === destFileExtension) {
-                // const processedContent = await processFile(filePath);
+            if (fileExtension === srcFileExtension) {
                 const destinationFilePath = path.join(destinationDir, filename);
-                // await fs.promises.writeFile(destinationFilePath, processedContent);
-                const destFilePath = destinationFilePath.replace(destFileExtension, '.png');
+                const destFilePath = destinationFilePath.replace(srcFileExtension, destFileExtension);
                 console.log(filePath, "==>", destFilePath);
-                await run(filePath, destFilePath, {
-                    parseMMDOptions: {
-                        mermaidConfig: {
-                            theme: 'dark'
-                        },
-                        backgroundColor: '#202020'
-                    }
-                });
-                console.log("-".repeat(70));
+                await run(filePath, destFilePath, options);
+                console.log("-".repeat(80));
             }
         }
     } catch (error) {
