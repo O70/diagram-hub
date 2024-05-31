@@ -32,11 +32,10 @@ async function processFile(filePath) {
                 const destFilePath = destinationFilePath.replace(destFileExtension, '.png');
                 console.log(filePath, "==>", destFilePath);
                 await run(filePath, destFilePath, {
-                    outputFormat: {
-                        theme: 'dark'
-                    },
                     parseMMDOptions: {
-                        theme: 'dark',
+                        mermaidConfig: {
+                            theme: 'dark'
+                        },
                         backgroundColor: '#202020'
                     }
                 });
