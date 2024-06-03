@@ -39,8 +39,9 @@ async function processDir(sourceDir, destinationDir) {
             processDir(filePath, destFilePath);
         } else if (stats.isFile()) {
             if (fileExtension === srcFileExtension) {
-                // console.log(filePath, '==>', destFilePath.replace(srcFileExtension, destFileExtension));
-                await run(filePath, destFilePath.replace(srcFileExtension, destFileExtension), options);
+                const targetFilePath = destFilePath.replace(srcFileExtension, destFileExtension);
+                console.log(filePath, '==>', targetFilePath);
+                await run(filePath, targetFilePath, options);
             }
             // console.log(`${filePath} is a file.`);
         } else {
