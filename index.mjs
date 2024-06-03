@@ -15,18 +15,8 @@ const options = {
     }
 };
 
-// function mkdir(dir) {
-//     if (!fs.existsSync(dir)) {
-//         fs.mkdirSync(destinationDir, { recursive: true });
-//     }
-// }
-
 async function processDir(sourceDir, destinationDir) {
-    // console.log('**:', destinationDir, typeof destinationDir);
-    // if (!fs.exists(destinationDir)) {
     const dirs = await fs.mkdir(destinationDir, { recursive: true });
-    // console.log('dd', dirs)
-    // }
 
     const files = await fs.readdir(sourceDir);
     for (const filename of files) {
@@ -42,8 +32,8 @@ async function processDir(sourceDir, destinationDir) {
                 const targetFilePath = destFilePath.replace(srcFileExtension, destFileExtension);
                 console.log(filePath, '==>', targetFilePath);
                 await run(filePath, targetFilePath, options);
+                console.log("-".repeat(80));
             }
-            // console.log(`${filePath} is a file.`);
         } else {
             console.log(`${filePath} is neither a file nor a directory.`);
         }
@@ -54,44 +44,7 @@ async function processDir(sourceDir, destinationDir) {
     try {
         await fs.rm(rootDestinationDir, { recursive: true, force: true });
         await processDir(rootSourceDir, rootDestinationDir);
-        // const files = await fs.readdir(sourceDir);
-        // for (const filename of files) {
-        //     const filePath = path.join(sourceDir, filename);
-        //     const stats = await fs.lstat(filePath);
-        //     if (stats.isDirectory()) {
-        //         console.log(`${filePath} is a directory.`);
-        //     } else if (stats.isFile()) {
-        //         console.log(`${filePath} is a file.`);
-        //     } else {
-        //         console.log(`${filePath} is neither a file nor a directory.`);
-        //     }
-        // }
     } catch (error) {
         console.error(error);
     }
 })();
-
-// (async () => {
-//     try {
-//         if (!fs.existsSync(destinationDir)) {
-//             fs.mkdirSync(destinationDir, { recursive: true });
-//         }
-
-//         const files = await fs.promises.readdir(sourceDir);
-//         for (const filename of files) {
-//             const filePath = path.join(sourceDir, filename);
-//             const fileExtension = path.extname(filename);
-
-//             if (fileExtension === srcFileExtension) {
-//                 const destinationFilePath = path.join(destinationDir, filename);
-//                 const destFilePath = destinationFilePath.replace(srcFileExtension, destFileExtension);
-//                 console.log(filePath, "==>", destFilePath);
-//                 // await run(filePath, destFilePath, options);
-//                 console.log("-".repeat(80));
-//             }
-//         }
-//     } catch (error) {
-//         console.error(error);
-//     }
-// })();
-
