@@ -22,21 +22,27 @@ const options = {
 // }
 
 async function processDir(sourceDir, destinationDir) {
-    console.log('**:', destinationDir, typeof destinationDir);
+    // console.log('**:', destinationDir, typeof destinationDir);
     // if (!fs.exists(destinationDir)) {
-    const dirs = await fs.mkdir(destinationDir, { recursive: false });
-    console.log('dd', dirs)
+    const dirs = await fs.mkdir(destinationDir, { recursive: true });
+    // console.log('dd', dirs)
     // }
 
     const files = await fs.readdir(sourceDir);
     for (const filename of files) {
+        const fileExtension = path.extname(filename);
         const filePath = path.join(sourceDir, filename);
+        const destFilePath = path.join(destinationDir, filename);
         const stats = await fs.lstat(filePath);
 
         if (stats.isDirectory()) {
-            processDir(filePath, path.join(destinationDir, filename));
+            processDir(filePath, destFilePath);
         } else if (stats.isFile()) {
-            console.log(`${filePath} is a file.`);
+            if (fileExtension === srcFileExtension) {
+                // console.log(filePath, '==>', destFilePath.replace(srcFileExtension, destFileExtension));
+                await run(filePath, destFilePath, options);
+            }
+            // console.log(`${filePath} is a file.`);
         } else {
             console.log(`${filePath} is neither a file nor a directory.`);
         }
@@ -45,7 +51,8 @@ async function processDir(sourceDir, destinationDir) {
 
 (async () => {
     try {
-        processDir(rootSourceDir, rootDestinationDir);
+        await fs.rm(rootDestinationDir, { recursive: true, force: true });
+        await processDir(rootSourceDir, rootDestinationDir);
         // const files = await fs.readdir(sourceDir);
         // for (const filename of files) {
         //     const filePath = path.join(sourceDir, filename);
