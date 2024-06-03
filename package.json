@@ -13,6 +13,7 @@
   "author": "鬼王",
   "license": "ISC",
   "devDependencies": {
-    "@mermaid-js/mermaid-cli": "^10.9.1"
+    "@mermaid-js/mermaid-cli": "^10.9.1",
+    "ejs": "^3.1.10"
   }
 }

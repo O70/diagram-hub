@@ -1,8 +1,7 @@
 import { promises as fs } from 'fs';
 import path from 'path';
 import { run } from '@mermaid-js/mermaid-cli';
-
-console.log(process.env.NODE_ENV)
+import ejs from 'ejs';
 
 // const args = process.argv.slice(2);
 // const isTest = args.includes('--test');
@@ -46,11 +45,30 @@ async function processDir(sourceDir, destinationDir) {
     } 
 }
 
+async function render() {
+    // let people = ['geddy', 'neil', 'alex'];
+    // let html = ejs.render('<%= people.join(", "); %>', {people: people});
+    // console.log(html);
+    const data = {
+        title: 'Diagram Hub',
+        message: 'This is a message from EJS!'
+    };
+    const template = await fs.readFile('index.html', { encoding: 'utf8' });
+    // console.log(template);
+    const a = ejs.render(template, data);
+    
+    // const a = await ejs.renderFile('index.html', data);
+
+    console.log(a);
+    await fs.writeFile('dist/index.html', new Uint8Array(Buffer.from(a)));
+}
+
 (async () => {
-    try {
-        await fs.rm(rootDestinationDir, { recursive: true, force: true });
-        await processDir(rootSourceDir, rootDestinationDir);
-    } catch (error) {
-        console.error(error);
-    }
+    // try {
+    //     await fs.rm(rootDestinationDir, { recursive: true, force: true });
+    //     await processDir(rootSourceDir, rootDestinationDir);
+    // } catch (error) {
+    //     console.error(error);
+    // }
+    await render();
 })();
