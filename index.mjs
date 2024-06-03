@@ -40,7 +40,7 @@ async function processDir(sourceDir, destinationDir) {
         } else if (stats.isFile()) {
             if (fileExtension === srcFileExtension) {
                 // console.log(filePath, '==>', destFilePath.replace(srcFileExtension, destFileExtension));
-                await run(filePath, destFilePath, options);
+                await run(filePath, destFilePath.replace(srcFileExtension, destFileExtension), options);
             }
             // console.log(`${filePath} is a file.`);
         } else {
