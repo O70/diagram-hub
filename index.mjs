@@ -1,6 +1,12 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import { run } from "@mermaid-js/mermaid-cli";
+import { run } from '@mermaid-js/mermaid-cli';
+
+console.log(process.env.NODE_ENV)
+
+// const args = process.argv.slice(2);
+// const isTest = args.includes('--test');
+const isProd = process.env.NODE_ENV === 'production';
 
 const rootSourceDir = 'src';
 const rootDestinationDir = 'dist';
@@ -31,7 +37,7 @@ async function processDir(sourceDir, destinationDir) {
             if (fileExtension === srcFileExtension) {
                 const targetFilePath = destFilePath.replace(srcFileExtension, destFileExtension);
                 console.log(filePath, '==>', targetFilePath);
-                await run(filePath, targetFilePath, options);
+                isProd && await run(filePath, targetFilePath, options);
                 console.log("-".repeat(80));
             }
         } else {

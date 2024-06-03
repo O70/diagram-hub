@@ -1,0 +1,10 @@
+= Diagram Hub
+
+[,bash]
+----
+npm install -D @mermaid-js/mermaid-cli@^9.4.0 --save-as @mermaid-js/mermaid-cli-9
+----
+
+`--save-as` npm原生不支持。
+
+在 `package.json` 中手动添加 `"@mermaid-js/mermaid-cli-9": "npm:@mermaid-js/mermaid-cli@9.1.7"`, 然后执行 `npm install`。
