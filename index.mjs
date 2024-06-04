@@ -46,29 +46,26 @@ async function processDir(sourceDir, destinationDir) {
 }
 
 async function render() {
-    // let people = ['geddy', 'neil', 'alex'];
-    // let html = ejs.render('<%= people.join(", "); %>', {people: people});
-    // console.log(html);
     const data = {
         title: 'Diagram Hub',
-        message: 'This is a message from EJS!'
+        message: 'This is a message from EJS!' + new Date().getTime()
     };
-    const template = await fs.readFile('index.html', { encoding: 'utf8' });
-    // console.log(template);
-    const a = ejs.render(template, data);
-    
-    // const a = await ejs.renderFile('index.html', data);
 
-    console.log(a);
-    await fs.writeFile('dist/index.html', new Uint8Array(Buffer.from(a)));
+    const filename = 'index.html';
+    const template = await fs.readFile(filename, { encoding: 'utf8' });
+    // console.log(template);
+    const result = ejs.render(template, data);
+    
+    console.log(typeof result);
+    await fs.writeFile('dist/index.html', new Uint8Array(Buffer.from(result)));
 }
 
 (async () => {
-    // try {
-    //     await fs.rm(rootDestinationDir, { recursive: true, force: true });
-    //     await processDir(rootSourceDir, rootDestinationDir);
-    // } catch (error) {
-    //     console.error(error);
-    // }
-    await render();
+    try {
+        await fs.rm(rootDestinationDir, { recursive: true, force: true });
+        await processDir(rootSourceDir, rootDestinationDir);
+        await render();
+    } catch (error) {
+        console.error(error);
+    }
 })();
