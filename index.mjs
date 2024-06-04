@@ -59,8 +59,7 @@ async function render() {
     
     const data = {
         title: 'Diagram Hub',
-        contents: new Uint8Array(Buffer.from(items.join('')))
-        // contents: items.join('')
+        contents: items.join('')
     };
 
     const publicDir = 'public';
