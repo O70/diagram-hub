@@ -12,14 +12,14 @@
         <%- contents %>
     </div>
 
-    <div id="modal" class="modal">
+    <!-- <div id="modal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="modal-img">
         <div id="caption"></div>
-    </div>
+    </div> -->
 
     <script type="text/javascript">
-        var modal = document.getElementById("modal");
+        /* var modal = document.getElementById("modal");
 
         var modalImg = document.getElementById("modal-img");
         var captionText = document.getElementById("caption");
@@ -36,7 +36,15 @@
 
         span.onclick = function() {
             modal.style.display = "none";
-        }
+        } */
+
+        document.querySelectorAll('.gallery-img').forEach(img => {
+            img.onclick = function(event) {
+                // img.select();
+                // document.execCommand("copy");
+                navigator.clipboard.writeText(`<%= domain% >/${event.target.alt}`);
+            }
+        });
     </script>
 </body>
 </html>

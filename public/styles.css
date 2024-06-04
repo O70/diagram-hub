@@ -6,15 +6,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 .gallery {
     display: grid;
+    gap: 10px;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-item {
+    /* border: 1px solid red; */
+}
+
+.gallery-img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+
+/* .gallery {
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
     width: 90%;
-    max-width: 1000px;
+    border: 1px solid red;
 }
 
 .gallery-item {
@@ -73,4 +92,4 @@ body {
     color: #ccc;
     padding: 10px 20px;
     height: 150px;
-}
+} */
