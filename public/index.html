@@ -42,7 +42,7 @@
             img.onclick = function(event) {
                 // img.select();
                 // document.execCommand("copy");
-                navigator.clipboard.writeText(`<%= domain% >/${event.target.alt}`);
+                navigator.clipboard.writeText(`<%= domain %>${event.target.alt}`);
             }
         });
     </script>

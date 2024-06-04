@@ -58,6 +58,7 @@ async function render() {
     const items = itemPaths.map(it => path.relative(rootDestinationDir, it)).map(it => ejs.render(templateItem, { src: it, alt: it }));
     
     const data = {
+        domain: 'https://diag.thraex.top/',
         title: 'Diagram Hub',
         contents: items.join('')
     };
