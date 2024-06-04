@@ -51,13 +51,12 @@ async function render() {
         message: 'This is a message from EJS!' + new Date().getTime()
     };
 
+    const publicDir = 'public';
     const filename = 'index.html';
-    const template = await fs.readFile(filename, { encoding: 'utf8' });
-    // console.log(template);
+    const template = await fs.readFile(path.join(publicDir, filename), { encoding: 'utf8' });
     const result = ejs.render(template, data);
-    
-    console.log(typeof result);
-    await fs.writeFile('dist/index.html', new Uint8Array(Buffer.from(result)));
+    await fs.writeFile(path.join(rootDestinationDir, filename), new Uint8Array(Buffer.from(result)));
+    await fs.cp(path.join(publicDir, 'styles.css'), path.join(rootDestinationDir, 'styles.css'));
 }
 
 (async () => {
