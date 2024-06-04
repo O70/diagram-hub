@@ -8,9 +8,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <%= message %>
     <div class="gallery">
-        <div class="gallery-item">
+        <!-- <div class="gallery-item">
             <img src="image1.jpg" alt="Image 1" class="gallery-img">
         </div>
         <div class="gallery-item">
@@ -18,8 +17,8 @@
         </div>
         <div class="gallery-item">
             <img src="image3.jpg" alt="Image 3" class="gallery-img">
-        </div>
-        <!-- Add more gallery items as needed -->
+        </div> -->
+        <%= contents %>
     </div>
 
     <div id="modal" class="modal">
@@ -29,10 +28,8 @@
     </div>
 
     <script type="text/javascript">
-        // Get the modal
         var modal = document.getElementById("modal");
 
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
         var modalImg = document.getElementById("modal-img");
         var captionText = document.getElementById("caption");
 
@@ -44,10 +41,8 @@
             }
         });
 
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }

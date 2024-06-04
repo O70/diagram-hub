@@ -9,6 +9,7 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const rootSourceDir = 'src';
 const rootDestinationDir = 'dist';
+const assetsDir = path.join(rootDestinationDir, 'assets');
 const srcFileExtension = '.mmd';
 const destFileExtension = '.png';
 const options = {
@@ -20,9 +21,11 @@ const options = {
     }
 };
 
+const itemPaths = [];
 async function processDir(sourceDir, destinationDir) {
     const dirs = await fs.mkdir(destinationDir, { recursive: true });
 
+    const separator = '-'.repeat(80);
     const files = await fs.readdir(sourceDir);
     for (const filename of files) {
         const fileExtension = path.extname(filename);
@@ -31,13 +34,14 @@ async function processDir(sourceDir, destinationDir) {
         const stats = await fs.lstat(filePath);
 
         if (stats.isDirectory()) {
-            processDir(filePath, destFilePath);
+            await processDir(filePath, destFilePath);
         } else if (stats.isFile()) {
             if (fileExtension === srcFileExtension) {
                 const targetFilePath = destFilePath.replace(srcFileExtension, destFileExtension);
                 console.log(filePath, '==>', targetFilePath);
+                itemPaths.push(targetFilePath);
                 isProd && await run(filePath, targetFilePath, options);
-                console.log("-".repeat(80));
+                console.log(separator);
             }
         } else {
             console.log(`${filePath} is neither a file nor a directory.`);
@@ -45,10 +49,20 @@ async function processDir(sourceDir, destinationDir) {
     } 
 }
 
+const templateItem = `
+<div class="gallery-item">
+    <img src="<%= src %>" alt="<%= alt %>" class="gallery-img">
+</div>
+`;
 async function render() {
+                // console.log(path.relative(rootDestinationDir, targetFilePath));
+                // console.log(path.resolve(rootDestinationDir, targetFilePath));
+    const items = [];
+    itemPaths.forEach(it => items.push(ejs.render(templateItem, { src: it, alt: it })));
+    
     const data = {
         title: 'Diagram Hub',
-        message: 'This is a message from EJS!' + new Date().getTime()
+        contents: items.join('')
     };
 
     const publicDir = 'public';
@@ -62,7 +76,7 @@ async function render() {
 (async () => {
     try {
         await fs.rm(rootDestinationDir, { recursive: true, force: true });
-        await processDir(rootSourceDir, rootDestinationDir);
+        await processDir(rootSourceDir, assetsDir);
         await render();
     } catch (error) {
         console.error(error);
