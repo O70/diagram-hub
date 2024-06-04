@@ -49,20 +49,19 @@ async function processDir(sourceDir, destinationDir) {
     } 
 }
 
-const templateItem = `
+async function render() {
+    const templateItem = `
         <div class="gallery-item">
             <img src="<%= src %>" alt="<%= alt %>" class="gallery-img">
         </div>
-`;
-async function render() {
+    `;
     const items = itemPaths.map(it => path.relative(rootDestinationDir, it)).map(it => ejs.render(templateItem, { src: it, alt: it }));
     
     const data = {
         title: 'Diagram Hub',
-        // contents: new Uint8Array(Buffer.from(items.join('')))
-        contents: items.join('')
+        contents: new Uint8Array(Buffer.from(items.join('')))
+        // contents: items.join('')
     };
-    console.log(data.contents)
 
     const publicDir = 'public';
     const filename = 'index.html';
