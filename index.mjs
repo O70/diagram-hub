@@ -58,7 +58,7 @@ async function render() {
                 // console.log(path.relative(rootDestinationDir, targetFilePath));
                 // console.log(path.resolve(rootDestinationDir, targetFilePath));
     const items = [];
-    itemPaths.forEach(it => items.push(ejs.render(templateItem, { src: it, alt: it })));
+    itemPaths.map(it => path.relative(rootDestinationDir, it)).forEach(it => items.push(ejs.render(templateItem, { src: it, alt: it })));
     
     const data = {
         title: 'Diagram Hub',
